@@ -1,0 +1,85 @@
+<div class="page-content">
+
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="Top Influencers">
+      <mat-spinner *ngIf="loading"></mat-spinner>
+      <div *ngIf="!loading" class="cards-container">
+        <ng-container *ngFor="let influencer of topInfluencers">
+          <app-influencer-card [influencer]="influencer"></app-influencer-card>
+        </ng-container>
+      </div>
+    </mat-tab>
+    <mat-tab label="All">
+      <div class="filters">
+
+        <div class="filter-item">
+          <label>Follower Count:</label>
+          <mat-form-field>
+            <mat-select [(value)]="selectedFollowersCount">
+              <mat-option value="0">Any</mat-option>
+              <mat-option value="10000000">> 10M</mat-option>
+              <mat-option value="1000000">> 1M</mat-option>
+              <mat-option value="100000">> 100K</mat-option>
+              <mat-option value="10000">> 10K</mat-option>
+              <mat-option value="1000">> 1K</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="filter-item">
+          <label>Interest:</label>
+          <mat-form-field>
+            <mat-select [(value)]="selectedInterest">
+              <mat-option value=" ">All</mat-option>
+              <mat-option *ngFor="let interest of interestsList" value="{{interest}}">{{interest}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="filter-item">
+          <label>Biography:</label>
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Enter keyword" [(ngModel)]="bioKeyword">
+          </mat-form-field>
+        </div>
+
+        <button mat-button (click)="filterInfluencers()">Apply</button>
+        <button mat-button (click)="ResetFiltersInfluencers()">Reset</button>
+
+        <div class="sort-item left-end" [class.clicked]="sortedByLikes">
+          <button mat-icon-button (click)="sortLikes(likesAsc); likesAsc = !likesAsc">
+            <mat-icon title="Likes">favorite</mat-icon>
+            <mat-icon *ngIf="!likesAsc">arrow_downward</mat-icon>
+            <mat-icon *ngIf="likesAsc">arrow_upward</mat-icon>
+          </button>
+        </div>
+        <div class="sort-item" [class.clicked]="sortedByComments">
+          <button mat-icon-button (click)="sortComments(commentsAsc); commentsAsc = !commentsAsc">
+            <mat-icon title="Comments">chat_bubble</mat-icon>
+            <mat-icon *ngIf="!commentsAsc">arrow_downward</mat-icon>
+            <mat-icon *ngIf="commentsAsc">arrow_upward</mat-icon>
+
+          </button>
+        </div>
+        <div class="sort-item" [class.clicked]="sortedByFollowers">
+          <button mat-icon-button (click)="sortFollowersCount(countAsc); countAsc = !countAsc">
+            <mat-icon title="Followers">people</mat-icon>
+            <mat-icon *ngIf="!countAsc">arrow_downward</mat-icon>
+            <mat-icon *ngIf="countAsc">arrow_upward</mat-icon>
+          </button>
+        </div>
+
+      </div>
+      <div class="cards-container">
+        <mat-spinner *ngIf="loading"></mat-spinner>
+        <ng-container *ngIf="!loading">
+          <ng-container *ngFor="let influencer of influencersList.slice(startIndex, endIndex)">
+            <app-influencer-card [influencer]="influencer"></app-influencer-card>
+          </ng-container>
+        </ng-container>
+      </div>
+      <mat-paginator *ngIf="!loading" [length]="influencersList.length" [pageSize]="10" (page)="pageEvent = handlePageEvent($event)">
+      </mat-paginator>
+    </mat-tab>
+  </mat-tab-group>
+</div>

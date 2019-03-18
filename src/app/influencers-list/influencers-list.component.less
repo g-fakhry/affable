@@ -1,0 +1,91 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 16px 0px;
+    padding: 16px 0px;
+    border-radius: 8px;
+  }
+
+  .left-end {
+      margin-left: auto;
+  }
+
+  .filters {
+    height: 50px;
+    margin-top: 20px;
+    display: flex;
+    align-items: baseline;
+    color: rgba(0,0,0,.54);
+    font-size: 13px;
+    padding-left: 25px;
+
+    .mat-button {
+        font-size: 13px;
+        min-width: 50px;
+        padding: 0px;
+    }
+
+    .filter-item {
+        padding-right: 25px;
+
+        label {
+            padding-right: 6px;
+        }
+    }
+
+    .clicked {
+        color: #673ab7;
+    }
+
+    .sort-item {
+        padding-right: 25px;
+
+        
+
+        button {
+            border-radius: 4px;
+        }
+    }
+  }
+
+  /deep/ .mat-tab-label {
+    font-size: 18px;
+  }
+
+  /deep/ .mat-tab-labels {
+    justify-content: center;
+  }
+
+  /deep/ .mat-paginator-container {
+      justify-content: center !important;
+  }
+
+  /deep/ .mat-form-field-infix {
+    border: 1px solid rgba(0,0,0,.1);
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,.1);
+    background: white;
+  }
+
+  /deep/ .mat-select-value {
+    color: rgba(0, 0, 0, 0.54);
+    padding-left: 6px;
+  }
+
+  /deep/ .mat-form-field-label {
+      padding-left: 6px;
+  }
+
+  /deep/ .mat-form-field-underline {
+    height: 0px !important;
+}
+
+/deep/ .mat-option {
+    height: 25px !important;
+}
+
+/deep/ .mat-progress-spinner {
+    left: 50%;
+    margin-top: 150px;
+}
